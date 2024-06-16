@@ -29,7 +29,7 @@ my Str $str-buf = "test-archive.tgz".IO.arch-extract( @files[2] );
 "new-archive.tgz".IO.arch-create( @file-paths );
 
 # Add or update a file to an archive
-"new-archive.tgz".IO.arch-insert( $file );
+"new-archive.tgz".IO.arch-insert( $file );  # NOT YET IMPLEMENTED!
 ```
 
 

@@ -4,8 +4,7 @@
   ],
   "depends": [
     "Archive::Libarchive",
-    "Archive::Libarchive::Constants",
-    "MONKEY-TYPING"
+    "Archive::Libarchive::Constants"
   ],
   "description": "Adds libarchive capabilities to IO::Path objects",
   "name": "IO-Archive",
@@ -28,5 +27,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

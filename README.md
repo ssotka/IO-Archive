@@ -6,6 +6,12 @@ IO::Archive - Adds libarchive capabilities to IO::Path objects
 SYNOPSIS
 ========
 
+Note: Requires libarchive to be installed and in place raku can find it. 
+
+For MacOS try;
+```brew install libarchive```
+* You may need to manually copy or link `libarchive.13.dylib` to someplace like `/usr/local/lib`.
+
 ```
 # Get a list of the files in the archive
 my @files = "test-archive.tgz".IO.arch-list;

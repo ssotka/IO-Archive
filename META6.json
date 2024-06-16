@@ -19,6 +19,13 @@
     "test-archive/file2.txt",
     "test-archive/second-level/file3.txt"
   ],
+  "source-url": "https://github.com/ssotka/IO-Archive.git",
+  "tags": [
+    "IO",
+    "Archive",
+    "Zip",
+    "Tgz"
+  ],
   "test-depends": [
   ],
   "version": "0.0.1"

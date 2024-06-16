@@ -1,0 +1,25 @@
+{
+  "auth": "zef:ssotka",
+  "build-depends": [
+  ],
+  "depends": [
+    "Archive::Libarchive",
+    "Archive::Libarchive::Constants",
+    "MONKEY-TYPING"
+  ],
+  "description": "Adds libarchive capabilities to IO::Path objects",
+  "name": "IO-Archive",
+  "provides": {
+    "IO::Archive": "lib/IO/Archive.rakumod"
+  },
+  "resources": [
+    "test-archive.tgz",
+    "test-archive.zip",
+    "test-archive/file1.txt",
+    "test-archive/file2.txt",
+    "test-archive/second-level/file3.txt"
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}

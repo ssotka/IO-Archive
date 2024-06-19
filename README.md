@@ -29,7 +29,11 @@ my Str $str-buf = "test-archive.tgz".IO.arch-extract( @files[2] );
 "new-archive.tgz".IO.arch-create( @file-paths );
 
 # Add or update a file to an archive
-"new-archive.tgz".IO.arch-insert( $file );  # NOT YET IMPLEMENTED!
+"new-archive.tgz".IO.arch-insert( $file ); 
+
+# NOTE: arch-insert works more like a refresh. It will take the list of existing files, add the 
+# new file to the list, make sure all the files exist (throwing an error if not). Then
+# remove the original archive file (new-archive.tgz) and recreate it containing the full list of files.
 ```
 
 

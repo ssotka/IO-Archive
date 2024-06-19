@@ -80,7 +80,9 @@ augment class IO::Path {
 
     multi method arch-create ( @files --> Bool) {
         my Bool $success = True;
-        my Archive::Libarchive $a .= new: operation => LibarchiveWrite, file => self.path;
+        my Archive::Libarchive $a .= new: 
+            operation => LibarchiveWrite, 
+            file => self.path;
         for @files -> $file {
             try {
                 $a.write-header($file,
@@ -96,6 +98,33 @@ augment class IO::Path {
             }
         }
         $a.close;
+        return $success;
+    }
+
+    multi method arch-insert ( Str $file --> Bool) {
+        my Bool $success = True;
+        
+        # Get this list of the files in the archive
+        my @files = self.arch-list;
+        push @files, $file;
+        try {            
+            # check to see if each file in @files exists
+            for @files -> $f {
+                unless $f.IO.e {
+                    # throw an exception if the file does not exist
+                    die "File $f does not exist";
+                }
+            }
+            # remove the original archive
+            self.unlink;
+            
+            # Create a new archive with the new list of files
+            my $newarchive = self.arch-create(@files);
+            CATCH {
+                default { .Str.say }
+                $success = False;
+            }
+        }
         return $success;
     }
 

@@ -18,3 +18,16 @@ my @cfiles = qw< test-path/f1 test-path/f2 test-path/d1/d1f1 >;
 "new-archive.tgz".IO.arch-create( @cfiles ).say;
 
 "new-archive.zip".IO.arch-create( @cfiles ).say;
+
+# shell out and create a new file as test-path/d1/d1f2
+shell "echo 'this is a test' > test-path/d1/d1f2";
+# add the new file to the archive
+"new-archive.tgz".IO.arch-insert( "test-path/d1/d1f2" ).say;
+"new-archive.zip".IO.arch-insert( "test-path/d1/d1f2" ).say;
+
+my @new-list = "new-archive.tgz".IO.arch-list;
+say @new-list.join("\n");
+
+# remove the file from the directory
+shell "rm test-path/d1/d1f2";
+

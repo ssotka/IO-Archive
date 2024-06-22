@@ -61,6 +61,30 @@ augment class IO::Path {
         return $content.decode;
     }
 
+    multi method arch-extract-buf ( Str $file --> Buf){
+        my Buf $content;
+        my Archive::Libarchive $a .= new:
+            operation => LibarchiveExtract,
+            file => self.path,
+            flags => ARCHIVE_EXTRACT_TIME +| ARCHIVE_EXTRACT_PERM +| ARCHIVE_EXTRACT_ACL +| ARCHIVE_EXTRACT_FFLAGS;
+        try {
+            my $operation = LibarchiveExtract;
+            my Archive::Libarchive::Entry $e .= new;
+             while $a.next-header($e) {
+                if $e.pathname eq $file {
+                    $content = $a.read-file-content($e);
+                    last;
+                }
+                $a.data-skip;
+            }
+            CATCH {
+                say "Can't extract files: $_";
+            }
+        }
+        $a.close;
+        return $content;
+    }
+
     multi method arch-extract-all ( Str $dest --> Bool) {
         my Bool $success = True;
         my Archive::Libarchive $a .= new:

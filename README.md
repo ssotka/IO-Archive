@@ -22,6 +22,9 @@ my @files = "test-archive.tgz".IO.arch-list;
 # extract the contents of a file in the archive to a string
 my Str $str-buf = "test-archive.tgz".IO.arch-extract( @files[2] );
 
+# extract the contents of a file in the archive to a Buf (for non-text files)
+my Buf $buf = "test-archive.tgz".IO.arch-extract-buf( @files[3] );
+
 # Extract all the files from the archive to a given destination
 "test-archive.tgz".IO.arch-extract-all( $dest );
 

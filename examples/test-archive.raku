@@ -10,6 +10,10 @@ say @files.join("\n");
 my Str $strbuf = "../resources/test-archive.tgz".IO.arch-extract("test-archive/second-level/file3.txt");
 say $strbuf;
 
+my Buf $buf = "../resources/test-archive.tgz".IO.arch-extract-buf("test-archive/second-level/file3.txt");
+# output buf as hex codes separated by spaces
+say $buf.list.fmt("%02x", " ");
+
 #say "\n\n=== now trying a zip file ===\n\n";
 #my @zfiles = "../resources/monitor-bot.zip".IO.arch-list.join("\n").say;
 #'../resources/monitor-bot.zip'.IO.arch-extract('monitor-bot/docker-compose.yml').say;
@@ -30,4 +34,6 @@ say @new-list.join("\n");
 
 # remove the file from the directory
 shell "rm test-path/d1/d1f2";
+# remove the tgz and zip files
+shell "rm new-archive.tgz new-archive.zip"; 
 
